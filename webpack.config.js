@@ -3,7 +3,6 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const PATHS = {
-  dist: path.join(__dirname, '/dist/'),
   src: path.join(__dirname, '/src/')
 }
 
@@ -42,7 +41,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      template: path.join('./src/', 'index.html')
+      template: path.join(PATHS.src, 'index.html')
     })
   ]
 }

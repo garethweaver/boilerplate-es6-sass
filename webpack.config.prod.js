@@ -41,7 +41,7 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin('[name].css'),
     new HtmlWebpackPlugin({
-      template: path.join('./src/', 'index.html')
+      template: path.join(PATHS.src, 'index.html')
     })
   ]
 }
