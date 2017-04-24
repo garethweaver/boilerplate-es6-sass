@@ -1,4 +1,3 @@
-// require('file?name=[name].[ext]!./index.html')
 require('./css/screen.sass')
 
 import Hello from  './js/hello'
