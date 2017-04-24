@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
@@ -8,7 +9,9 @@ const PATHS = {
 
 module.exports = {
   devServer: {
-    contentBase: PATHS.src
+    contentBase: PATHS.src,
+    hot: true,
+    inline: true
   },
 
   entry: [
@@ -37,6 +40,7 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: path.join('./src/', 'index.html')
     })

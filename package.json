@@ -2,7 +2,7 @@
   "name": "es6-gulp",
   "version": "1.0.0",
   "scripts": {
-    "start": "webpack-dev-server --hot --inline --colors --progress",
+    "start": "webpack-dev-server",
     "build": "webpack --progress --colors --config webpack.config.prod.js -p",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
