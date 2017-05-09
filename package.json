@@ -1,5 +1,5 @@
 {
-  "name": "es6-gulp",
+  "name": "es6-webpack",
   "version": "1.0.0",
   "scripts": {
     "start": "webpack-dev-server",
