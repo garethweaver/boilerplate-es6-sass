@@ -8,6 +8,8 @@ const PATHS = {
 }
 
 module.exports = {
+  mode: 'production',
+
   entry: [
     path.join(PATHS.src, 'app.js')
   ],
@@ -19,20 +21,21 @@ module.exports = {
   },
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.sass$/,
-        loader: ExtractTextPlugin.extract({
+        use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: 'css-loader!sass-loader?indentedSyntax'
         })
       },
       {
         test: /\.js$/,
-        include: /js/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2015']
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
         }
       }
     ]
@@ -40,8 +43,6 @@ module.exports = {
 
   plugins: [
     new ExtractTextPlugin('[name].css'),
-    new HtmlWebpackPlugin({
-      template: path.join(PATHS.src, 'index.html')
-    })
+    new HtmlWebpackPlugin({ template: path.join(PATHS.src, 'index.html') })
   ]
 }

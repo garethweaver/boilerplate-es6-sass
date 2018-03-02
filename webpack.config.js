@@ -13,6 +13,8 @@ module.exports = {
     inline: true
   },
 
+  mode: 'development',
+
   entry: [
     path.join(PATHS.src, 'app.js')
   ],
@@ -22,17 +24,18 @@ module.exports = {
   },
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.sass$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader?indentedSyntax']
+        use: ['style-loader', 'css-loader', 'sass-loader?indentedSyntax']
       },
       {
         test: /\.js$/,
-        include: /js/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['env']
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
         }
       }
     ]
@@ -40,8 +43,6 @@ module.exports = {
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      template: path.join(PATHS.src, 'index.html')
-    })
+    new HtmlWebpackPlugin({ template: path.join(PATHS.src, 'index.html') })
   ]
 }
