@@ -1,5 +1,5 @@
 {
-  "name": "es6-webpack",
+  "name": "boilerplate-es6-sass",
   "version": "1.0.0",
   "scripts": {
     "start": "webpack-dev-server",
