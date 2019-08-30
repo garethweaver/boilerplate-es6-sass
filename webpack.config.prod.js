@@ -1,6 +1,8 @@
+const webpack = require('webpack')
 const path = require('path')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const autoprefixer = require('autoprefixer')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const PATHS = {
   dist: path.join(__dirname, '/dist/'),
@@ -24,10 +26,19 @@ module.exports = {
     rules: [
       {
         test: /\.sass$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader!sass-loader?indentedSyntax'
-        })
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          'css-loader',
+          'postcss-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require('sass')
+            }
+          }
+        ],
       },
       {
         test: /\.js$/,
@@ -42,7 +53,15 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin('[name].css'),
-    new HtmlWebpackPlugin({ template: path.join(PATHS.src, 'index.html') })
+    new MiniCssExtractPlugin('[name].css'),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: [autoprefixer()]
+      }
+    }),
+    new HtmlWebpackPlugin({
+      template: path.join(PATHS.src, 'index.html'),
+      minify: { collapseWhitespace: true },
+    })
   ]
 }
