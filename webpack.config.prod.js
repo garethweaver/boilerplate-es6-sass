@@ -16,7 +16,7 @@ module.exports = {
 
   output: {
     path: PATHS.dist,
-    filename: '[name].js',
+    filename: '[name].[contenthash].js',
     publicPath: '/',
   },
 
@@ -51,7 +51,9 @@ module.exports = {
   },
 
   plugins: [
-    new MiniCssExtractPlugin('[name].css'),
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css',
+    }),
     new webpack.LoaderOptionsPlugin({
       options: {
         postcss: [autoprefixer()],
