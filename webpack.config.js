@@ -4,24 +4,22 @@ const autoprefixer = require('autoprefixer')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const PATHS = {
-  src: path.join(__dirname, '/src/')
+  src: path.join(__dirname, '/src/'),
 }
 
 module.exports = {
   devServer: {
     contentBase: PATHS.src,
     hot: true,
-    inline: true
+    inline: true,
   },
 
   mode: 'development',
 
-  entry: [
-    path.join(PATHS.src, 'app.js')
-  ],
+  entry: [path.join(PATHS.src, 'app.js')],
 
   output: {
-    filename: 'app.js'
+    filename: 'app.js',
   },
 
   module: {
@@ -35,32 +33,32 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
-              implementation: require('sass')
-            }
-          }
-        ]
+              implementation: require('sass'),
+            },
+          },
+        ],
       },
       {
         test: /\.js$/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
-          }
-        }
-      }
-    ]
+            presets: ['@babel/preset-env'],
+          },
+        },
+      },
+    ],
   },
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.LoaderOptionsPlugin({
       options: {
-        postcss: [autoprefixer()]
-      }
+        postcss: [autoprefixer()],
+      },
     }),
     new HtmlWebpackPlugin({
-      template: path.join(PATHS.src, 'index.html')
-    })
-  ]
+      template: path.join(PATHS.src, 'index.html'),
+    }),
+  ],
 }

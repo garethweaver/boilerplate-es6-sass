@@ -1,6 +1,6 @@
 require('./css/screen.sass')
 
-import Hello from  './js/hello'
+import Hello from './js/hello'
 import Foo from './js/foo'
 
 Hello()

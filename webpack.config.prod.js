@@ -6,20 +6,18 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const PATHS = {
   dist: path.join(__dirname, '/dist/'),
-  src: path.join(__dirname, '/src/')
+  src: path.join(__dirname, '/src/'),
 }
 
 module.exports = {
   mode: 'production',
 
-  entry: [
-    path.join(PATHS.src, 'app.js')
-  ],
+  entry: [path.join(PATHS.src, 'app.js')],
 
   output: {
     path: PATHS.dist,
     filename: '[name].js',
-    publicPath: '/'
+    publicPath: '/',
   },
 
   module: {
@@ -35,9 +33,9 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
-              implementation: require('sass')
-            }
-          }
+              implementation: require('sass'),
+            },
+          },
         ],
       },
       {
@@ -45,23 +43,23 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
-          }
-        }
-      }
-    ]
+            presets: ['@babel/preset-env'],
+          },
+        },
+      },
+    ],
   },
 
   plugins: [
     new MiniCssExtractPlugin('[name].css'),
     new webpack.LoaderOptionsPlugin({
       options: {
-        postcss: [autoprefixer()]
-      }
+        postcss: [autoprefixer()],
+      },
     }),
     new HtmlWebpackPlugin({
       template: path.join(PATHS.src, 'index.html'),
       minify: { collapseWhitespace: true },
-    })
-  ]
+    }),
+  ],
 }
