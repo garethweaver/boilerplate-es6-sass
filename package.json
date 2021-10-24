@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "rimraf dist && webpack --config webpack.config.prod.js",
+    "build": "rm -rf dist && webpack --config webpack.config.prod.js",
     "format": "prettier --write '**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,7 +17,6 @@
     "html-webpack-plugin": "^5.4.0",
     "mini-css-extract-plugin": "^2.4.3",
     "prettier": "^2.4.1",
-    "rimraf": "^3.0.2",
     "sass": "^1.43.3",
     "sass-loader": "^12.2.0",
     "style-loader": "^3.3.1",
