@@ -1,6 +1,5 @@
 const webpack = require('webpack')
 const path = require('path')
-const autoprefixer = require('autoprefixer')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const PATHS = {
@@ -8,12 +7,6 @@ const PATHS = {
 }
 
 module.exports = {
-  devServer: {
-    contentBase: PATHS.src,
-    hot: true,
-    inline: true,
-  },
-
   mode: 'development',
 
   entry: [path.join(PATHS.src, 'app.js')],
@@ -24,12 +17,12 @@ module.exports = {
 
   module: {
     rules: [
+
       {
         test: /\.sass$/,
         use: [
           'style-loader',
           'css-loader',
-          'postcss-loader',
           {
             loader: 'sass-loader',
             options: {
@@ -44,7 +37,6 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env'],
-            plugins: ['@babel/plugin-proposal-class-properties'],
           },
         },
       },
@@ -52,12 +44,6 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        postcss: [autoprefixer()],
-      },
-    }),
     new HtmlWebpackPlugin({
       template: path.join(PATHS.src, 'index.html'),
     }),

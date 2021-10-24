@@ -1,6 +1,5 @@
 const webpack = require('webpack')
 const path = require('path')
-const autoprefixer = require('autoprefixer')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
@@ -29,7 +28,6 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader,
           },
           'css-loader',
-          'postcss-loader',
           {
             loader: 'sass-loader',
             options: {
@@ -44,7 +42,6 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env'],
-            plugins: ['@babel/plugin-proposal-class-properties'],
           },
         },
       },
@@ -54,11 +51,6 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
-    }),
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        postcss: [autoprefixer()],
-      },
     }),
     new HtmlWebpackPlugin({
       template: path.join(PATHS.src, 'index.html'),
