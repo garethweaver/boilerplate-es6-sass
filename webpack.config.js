@@ -17,18 +17,12 @@ module.exports = {
 
   module: {
     rules: [
-
       {
         test: /\.sass$/,
         use: [
           'style-loader',
           'css-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              implementation: require('sass'),
-            },
-          },
+          'sass-loader',
         ],
       },
       {
